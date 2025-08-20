@@ -28,6 +28,8 @@ export default function App() {
               jobs={jobs}
               onOpenJob={openJob}
               goProfile={() => setCurrentTab("profile")}
+              currentTab={currentTab}
+              setCurrentTab={setCurrentTab}
             />
           )}
           {currentTab === "job" && (
@@ -43,7 +45,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* Bottom nav is hidden on the Job detail apply confirmation to mimic modal; keep it global otherwise */}
       {currentTab !== "job" && (
         <BottomTab tab={currentTab} setTab={setCurrentTab} />
       )}

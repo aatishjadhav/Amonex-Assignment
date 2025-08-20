@@ -46,19 +46,27 @@ function Sidebar({ tab, setTab, isOpen, onClose }) {
     </button>
   );
 
-  if (!isOpen) return null;
-
   return (
     <>
-      <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 "
-        onClick={onClose}
-      />
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+          onClick={onClose}
+        />
+      )}
 
-      <div className="fixed left-0 top-0 bottom-0 w-64 bg-[#121424] border-r border-white/10 p-6 z-50 ">
+      {/* Sidebar itself (always visible on desktop) */}
+      <div
+        className={`fixed left-0 top-0 bottom-0 w-64 bg-[#121424] border-r border-white/10 p-6 z-50
+        ${isOpen ? "block" : "hidden"} lg:block`}
+      >
         <div className="flex items-center justify-between mb-8">
           <div className="text-white font-bold text-xl">JobFinder</div>
-          <button onClick={onClose} className="text-white/70 hover:text-white">
+          <button
+            onClick={onClose}
+            className="text-white/70 hover:text-white lg:hidden"
+          >
             <X size={20} />
           </button>
         </div>
@@ -73,5 +81,6 @@ function Sidebar({ tab, setTab, isOpen, onClose }) {
     </>
   );
 }
+
 
 export default Sidebar;
